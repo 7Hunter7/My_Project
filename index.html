@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Добавить отзыв</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form class="container center">
+      <h1 class="title">Оставьте свой отзыв</h1>
+      <input
+        class="input-product"
+        type="text"
+        placeholder="Название продукта"
+        required
+      />
+      <textarea
+        class="user-review"
+        rows="8"
+        cols="50"
+        placeholder="Ваш отзыв"
+        required
+      ></textarea>
+      <button class="add-review">Добавить отзыв</button>
+      <a href="allReview.html" class="link-review">Посмотреть все отзывы</a>
+      <div class="error"></div>
+    </form>
+
+    <script src="addReview.js"></script>
+  </body>
+</html>

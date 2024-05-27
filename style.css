@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.center {
+  width: 800px;
+  margin: 0 auto;
+}
+
+.container {
+  padding: 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 32px;
+}
+
+.add-review {
+  margin-bottom: 24px;
+  margin-top: 24px;
+  width: 200px;
+}
+
+.user-review {
+  font-size: 16px;
+}
