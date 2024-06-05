@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Онлайн опросник</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section class="questions">
+      <h1>Опросник</h1>
+      <form>
+        <legend>Вопрос 1: Какой ваш любимый цвет?</legend>
+        <div class="question">
+          <label>
+            <label> <input type="radio" name="q1" value="Белый" />Белый</label>
+            <input type="radio" name="q1" value="Красный" />Красный</label
+          >
+          <label>
+            <input type="radio" name="q1" value="Оранжевый" />Оранжевый</label
+          >
+          <label> <input type="radio" name="q1" value="Жёлтый" />Жёлтый</label>
+          <label>
+            <input type="radio" name="q1" value="Зеленый" />Зеленый</label
+          >
+          <label>
+            <input type="radio" name="q1" value="Голубой" />Голубой</label
+          >
+          <label> <input type="radio" name="q1" value="Синий" />Синий</label>
+          <label>
+            <input type="radio" name="q1" value="Фиолетовый" />Фиолетовый</label
+          >
+          <label> <input type="radio" name="q1" value="Черный" />Черный</label>
+        </div>
+        <legend>Вопрос 2: Какое ваше любимое животное?</legend>
+        <div class="question">
+          <label> <input type="radio" name="q2" value="Кошка" />Кошка</label>
+          <label> <input type="radio" name="q2" value="Собака" />Собака</label>
+          <label>
+            <input type="radio" name="q2" value="Попугай" />Попугай</label
+          >
+          <label> <input type="radio" name="q2" value="Рыбки" />Рыбки</label>
+          <label> <input type="radio" name="q2" value="Кролик" />Кролик</label>
+          <label>
+            <input type="radio" name="q2" value="Хомячок" />Хомячок</label
+          >
+          <label>
+            <input type="radio" name="q2" value="Шиншилла" />Шиншилла
+          </label>
+          <label>
+            <input type="radio" name="q2" value="Морская свинка" />Черепаха
+          </label>
+          <label> <input type="radio" name="q2" value="Лошадь" />Лошадь</label>
+        </div>
+        <div>
+          <button class="finish">Завершить опрос</button>
+        </div>
+      </form>
+    </section>
+    <section class="answers">
+      <h3>Результаты:</h3>
+      <p id="answer-q1">Ваш любимый цвет: <span></span></p>
+      <p id="answer-q2">Ваше любимое животное: <span></span></p>
+    </section>
+
+    <script>
+      const finishBtn = document.querySelector(".finish");
+      console.log(finishBtn);
+      const answersEl = document.querySelector(".answers");
+      console.log(answersEl);
+
+      finishBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        let answerForQuestionOne = document.querySelector(
+          "input[name='q1']:checked"
+        );
+        let answerForQuestionTwo = document.querySelector(
+          "input[name='q2']:checked"
+        );
+
+        if (answerForQuestionOne && answerForQuestionTwo) {
+          answersEl.style.display = "block";
+          let answerOne = document
+            .getElementById("answer-q1")
+            .querySelector("span");
+          answerOne.innerText = answerForQuestionOne.value;
+
+          let answerTwo = document
+            .getElementById("answer-q2")
+            .querySelector("span");
+          answerTwo.innerText = answerForQuestionTwo.value;
+        } else {
+          alert("Ответьте на все вопросы");
+        }
+      });
+    </script>
+  </body>
+</html>
