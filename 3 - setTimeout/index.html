@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .button {
+        margin: 40px;
+        padding: 10px 20px;
+        border-radius: 10px;
+        color: white;
+        background-color: rgb(48, 48, 204);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="button">Купить</button>
+
+    <script>
+      const btnEl = document.querySelector(".button");
+
+      btnEl.addEventListener("click", function (e) {
+        if (e.isTrusted) {
+          setTimeout(() => {
+            btnEl.innerText = "Товар добавлен в корзину";
+            btnEl.style.backgroundColor = "red";
+          }, 2000);
+          setTimeout(() => {
+            btnEl.innerText = "Купить";
+            btnEl.style.backgroundColor = "rgb(48, 48, 204)";
+          }, 5000);
+          setTimeout(() => {
+            if (btnEl.innerText === "Купить") {
+              console.log("Done");
+            }
+          }, 8000);
+        }
+      });
+    </script>
+  </body>
+</html>
