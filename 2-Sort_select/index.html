@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сортировка товаров</title>
+  </head>
+  <body>
+    <h1>Список товаров</h1>
+    <label for="sort-select">Сортировка:</label>
+    <select id="sort-select">
+      <option value="">Сортировать по...</option>
+      <option value="asc">По возрастанию цены</option>
+      <option value="desc">По убыванию цены</option>
+    </select>
+
+    <ul class="product-list">
+      <li class="product-item">Товар 1 - $50</li>
+      <li class="product-item">Товар 2 - $30</li>
+      <li class="product-item">Товар 3 - $70</li>
+      <li class="product-item">Товар 4 - $20</li>
+      <li class="product-item">Товар 5 - $100</li>
+    </ul>
+
+    <script>
+      const sortSelct = document.querySelector("#sort-select");
+      const productList = document.querySelector(".product-list");
+
+      // Массив товаров
+      const productItems = Array.from(
+        document.querySelectorAll(".product-item")
+      );
+      console.log(productItems);
+
+      sortSelct.onchange = function () {
+        // Получение выбранной опции сортировки
+        const selectOption = sortSelct.value;
+        console.log(selectOption);
+
+        // Сортировка списка товаров по цене
+        if (selectOption === "asc") {
+          productItems.sort((a, b) => {
+            const priceA = parseInt(a.textContent.split("- $")[1]);
+            const priceB = parseInt(b.textContent.split("- $")[1]);
+            return priceA - priceB;
+          });
+        } else if (selectOption === "desc") {
+          productItems.sort((a, b) => {
+            const priceA = parseInt(a.textContent.split("- $")[1]);
+            const priceB = parseInt(b.textContent.split("- $")[1]);
+            return priceB - priceA;
+          });
+        } else return;
+
+        // Обновление порядка элементов в DOM
+        productItems.forEach((item) => productList.appendChild(item));
+      };
+    </script>
+  </body>
+</html>
