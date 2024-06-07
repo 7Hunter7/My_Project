@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Выбор страны</title>
+  </head>
+  <body>
+    <h1>Выберите страну:</h1>
+    <form id="country-form">
+      <select id="country-select">
+        <option value="">Выберите страну</option>
+        <option value="russia">Россия</option>
+        <option value="usa">США</option>
+        <option value="china">Китай</option>
+      </select>
+    </form>
+    <h2>Столица:</h2>
+    <p id="capital-info">Выберите страну, чтобы узнать столицу.</p>
+
+    <script>
+      const selectEl = document.querySelector("#country-select");
+      const capitalInfoEl = document.querySelector("#capital-info");
+
+      selectEl.onchange = function () {
+        const selectedCountry = selectEl.value;
+        console.log(selectedCountry);
+        let capital = "";
+
+        //Определяем столицу в зависмости от выбранной страны
+        switch (selectedCountry) {
+          case "russia":
+            capital = "Москва";
+            break;
+          case "usa":
+            capital = "Вашингтон";
+            break;
+          case "china":
+            capital = "Пекин";
+            break;
+          default:
+            capital = "Выберите страну, чтобы узнать столицу.";
+            break;
+        }
+
+        //Обновляем информацию о столице
+        capitalInfoEl.textContent = capital;
+      };
+    </script>
+  </body>
+</html>
