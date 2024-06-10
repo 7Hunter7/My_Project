@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Бесконечная лента фотографий</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="photo-container"></div>
+
+    <script>
+      const photoContainer = document.getElementById("photo-container");
+      let page = 1;
+      async function fetchPhotos() {
+        try {
+          const response = await fetch(
+            `https://api.unsplash.com/photos?pages=${page}&per_pages=9&client_id=XtA-M9YWDwJ2xJ1avS-gqnByhxs4tZA2BwMdtHu5lEI`
+          );
+          const photos = await response.json();
+          return photos;
+        } catch (error) {
+          console.log("Ошибка при загрузке фотографий: ", error);
+          return [];
+        }
+      }
+
+      async function loadMorePhotos() {
+        const photos = await fetchPhotos();
+        if (photos.length > 0) {
+          photos.forEach((photo) => {
+            const photoEl = document.createElement("div");
+            photoEl.classList.add("photo");
+            const img = document.createElement("img");
+            img.src = photo.urls.small;
+            img.alt = photo.alt_description;
+            photoEl.append(img);
+            photoContainer.append(photoEl);
+          });
+          page++;
+        }
+      }
+
+      window.addEventListener("scroll", () => {
+        // Создание бесконечной прокрутки
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+          loadMorePhotos();
+        }
+      });
+
+      // Загрузка первой партии фотографий при загрузке страници
+      loadMorePhotos();
+    </script>
+  </body>
+</html>
