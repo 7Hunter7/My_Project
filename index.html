@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app" style="text-align: center">
+      <button style="display: block" @click="reverseNameButton">
+        {{nameButton}}
+      </button>
+
+      <button style="display: block" @click="addItemToList">Добавить</button>
+      <ol style="display: inline-block">
+        <li v-for="(item, index) in listItems" @click="removeItem(index)">
+          {{item}}
+        </li>
+      </ol>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          nameButton: "Перевернуть",
+          listItems: [
+            "Элемент 1",
+            "Элемент 2",
+            "Элемент 3",
+            "Элемент 4",
+            "Элемент 5",
+          ],
+        },
+        methods: {
+          reverseNameButton: function () {
+            this.nameButton = this.nameButton.split("").reverse().join("");
+          },
+          addItemToList: function () {
+            this.listItems.push("Новый элемент списка");
+          },
+          removeItem: function (index) {
+            this.listItems.splice(index, 1);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
