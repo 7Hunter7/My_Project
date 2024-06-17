@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="product">
+        <h2>{{product.name}}</h2>
+        <p>Описание: {{product.description}}</p>
+        <p>Цена: {{product.price}}</p>
+        <button @click="getDiscount">Получить скидку</button>
+        <p>Цена со скидкой: {{pricewithDiscount}}</p>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          discount: 0,
+          product: {
+            name: "Товар 1",
+            description: "Описание товара 1",
+            price: 220,
+          },
+        },
+        methods: {
+          getDiscount() {
+            this.discount = Math.floor(Math.random() * 20);
+          },
+        },
+        computed: {
+          pricewithDiscount() {
+            return Math.floor(
+              this.product.price - this.product.price * (this.discount / 100)
+            );
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

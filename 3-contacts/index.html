@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="form" @keyup.enter="addContact()">
+        <h3>Имя:</h3>
+        <input type="text" v-model.number="contact.name" />
+        <h3>Фамилия:</h3>
+        <input type="text" v-model.number="contact.surname" />
+        <h3>Email:</h3>
+        <input type="text" v-model.number="contact.email" />
+        <button @click="addContact()">Добавить контакт</button>
+      </div>
+      <ul class="contacts">
+        <li class="contact" v-for="item in contacts" :key="item.id">
+          {{item.name}} {{item.surname}} - {{item.email}}
+        </li>
+      </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          discount: 0,
+          contact: {
+            name: "",
+            surname: "",
+            email: "",
+          },
+          contacts: [
+            {
+              id: 1,
+              name: "Vasya",
+              surname: "Pupkin",
+              email: "Vasya_Pupkin@mail.ru",
+            },
+            {
+              id: 2,
+              name: "Ivan",
+              surname: "Petrov",
+              email: "Ivan_Petrov@mail.ru",
+            },
+            {
+              id: 3,
+              name: "Petr",
+              surname: "Ivanov",
+              email: "Petr_Ivanov@mail.ru",
+            },
+          ],
+        },
+        methods: {
+          addContact() {
+            if (
+              this.contact.name &&
+              this.contact.surname &&
+              this.contact.email
+            ) {
+              console.log(this.contact);
+              // this.contacts.push({
+              //   id: this.contacts.lenght,
+              //   ...this.contact,
+              // });
+              this.contacts.push(structuredClone(this.contact));
+              console.log(this.contacts);
+              this.contact.name = "";
+              this.contact.surname = "";
+              this.contact.email = "";
+            }
+          },
+        },
+        computed: {},
+      });
+    </script>
+  </body>
+</html>
