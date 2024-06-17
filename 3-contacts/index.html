@@ -9,11 +9,11 @@
     <div id="app">
       <div class="form" @keyup.enter="addContact()">
         <h3>Имя:</h3>
-        <input type="text" v-model.number="contact.name" />
+        <input type="text" v-model="contact.name" />
         <h3>Фамилия:</h3>
-        <input type="text" v-model.number="contact.surname" />
+        <input type="text" v-model="contact.surname" />
         <h3>Email:</h3>
-        <input type="text" v-model.number="contact.email" />
+        <input type="email" v-model="contact.email" />
         <button @click="addContact()">Добавить контакт</button>
       </div>
       <ul class="contacts">
@@ -29,7 +29,6 @@
       new Vue({
         el: "#app",
         data: {
-          discount: 0,
           contact: {
             name: "",
             surname: "",
@@ -63,13 +62,13 @@
               this.contact.surname &&
               this.contact.email
             ) {
-              console.log(this.contact);
               // this.contacts.push({
               //   id: this.contacts.lenght,
               //   ...this.contact,
               // });
+              // ИЛИ
               this.contacts.push(structuredClone(this.contact));
-              console.log(this.contacts);
+              
               this.contact.name = "";
               this.contact.surname = "";
               this.contact.email = "";
