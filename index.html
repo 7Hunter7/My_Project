@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Сортировка товаров</title>
+    <style>
+      .section {
+        width: 800px;
+        margin: 20px;
+      }
+      .section h1,
+      h2 {
+        text-align: center;
+      }
+      .sort {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .sort__buttons {
+        display: flex;
+        gap: 20px;
+      }
+      .products {
+        margin-top: 20px;
+        border: 2px solid gray;
+        border-radius: 15px;
+        padding: 15px;
+      }
+      .product {
+        border: 2px solid gray;
+        border-radius: 10px;
+        padding: 0px 30px;
+      }
+      .product:hover {
+        box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+      }
+      .product__description {
+        text-align: center;
+      }
+      .product__price {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <section class="section">
+        <div class="sort">
+          <h2>Сортировка товаров</h2>
+          <div class="sort__buttons">
+            <button @click="sortPriceUp">по возрастанию цены</button>
+            <button @click="sortPriceDown">по убыванию цены</button>
+          </div>
+        </div>
+        <div class="products">
+          <h1>Товары</h1>
+          <ul class="product" v-for="item in products" :key="item.id">
+            <li>
+              <h3 class="product__name">{{item.name}}</h3>
+              <p class="product__description">
+                Описание: <span>{{item.description}}</span>
+              </p>
+              <p class="product__price">
+                Цена: <span>{{item.price}}</span> &#8381;
+              </p>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          products: [
+            {
+              id: 1,
+              name: "Смартфон",
+              description: "Описание товара Смартфон",
+              price: 18000,
+            },
+            {
+              id: 2,
+              name: "Телевизор",
+              description: "Описание товара Телевизор",
+              price: 35000,
+            },
+            {
+              id: 3,
+              name: "Планшет",
+              description: "Описание товара Планшет",
+              price: 11000,
+            },
+            {
+              id: 4,
+              name: "Микроволновка",
+              description: "Описание товара Микроволновка",
+              price: 8000,
+            },
+            {
+              id: 5,
+              name: "Пылесос",
+              description: "Описание товара Пылесос",
+              price: 14000,
+            },
+            {
+              id: 6,
+              name: "Холодильник",
+              description: "Описание товара Холодильник",
+              price: 45000,
+            },
+            {
+              id: 7,
+              name: "Соковыжималка",
+              description: "Описание товара Соковыжималка",
+              price: 6000,
+            },
+            {
+              id: 8,
+              name: "Кофемашина",
+              description: "Описание товара Кофемашина",
+              price: 30000,
+            },
+            {
+              id: 9,
+              name: "Тостер",
+              description: "Описание товара Тостер",
+              price: 2200,
+            },
+            {
+              id: 10,
+              name: "Блендер",
+              description: "Описание товара Блендер",
+              price: 3600,
+            },
+          ],
+        },
+        methods: {
+          sortPriceUp() {
+            return this.products.sort((a, b) => a.price - b.price);
+          },
+          sortPriceDown(products) {
+            return this.products.sort((a, b) => b.price - a.price);
+          },
+        },
+        computed: {},
+      });
+    </script>
+  </body>
+</html>
